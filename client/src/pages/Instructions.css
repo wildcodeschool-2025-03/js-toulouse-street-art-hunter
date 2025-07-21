@@ -1,0 +1,49 @@
+.instructions-page {
+  min-height: 100vh;
+  background: url("../images/background-street-art.png") no-repeat center center
+    / cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  color: white;
+  text-align: center;
+  font-family: "RetroGaming", monospace;
+}
+
+.instructions-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.instructions-text {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  max-width: 800px;
+}
+
+.instructions-list {
+  text-align: left;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.instructions-list li {
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.start-chasse-button {
+  background-color: #ff8000;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff8000;
+}
+
+.start-chasse-button:hover {
+  background-color: orange;
+  box-shadow: 0 0 15px red;
+}

@@ -1,0 +1,80 @@
+/* src/pages/Carte.css */
+.carte-container {
+  min-height: 100vh;
+  padding: 100px 20px 80px; /* place pour navbar + footer */
+  background-image: url("../assets/images/aae341cc-0264-4f21-a1c0-e449bb399e84.png"); /* mets le bon nom */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+}
+
+.carte-title {
+  font-size: 2.5rem;
+  color: #f4f9fa; /* bleu cyan vif */
+  text-shadow: 2px 2px 4px black;
+  margin-bottom: 20px;
+}
+
+.carte-content {
+  display: grid;
+  grid-template-columns: 1fr; /* une seule colonne sur mobile */
+  gap: 1rem;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.map-container {
+  margin: 0 auto 40px;
+  max-width: 800px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Composant List */
+.artwork-list {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  @media (min-width: 768px) {
+    order: 0; /* pour que la liste soit à gauche sur les écrans plus larges */
+  }
+}
+
+.artwork-card {
+  background-color: rgba(255, 255, 255, 0.9); /* fond légèrement visible */
+  color: black;
+  border-radius: 12px;
+  padding: 15px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.artwork-info {
+  text-align: left;
+}
+
+.artwork-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.artwork-rating {
+  color: #f39c12;
+}
+
+.artwork-maplink {
+  display: inline-block;
+  color: #007bff;
+  text-decoration: underline;
+  margin-top: 6px;
+}

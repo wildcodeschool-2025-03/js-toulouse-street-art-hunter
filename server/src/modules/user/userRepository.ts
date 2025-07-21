@@ -44,6 +44,14 @@ class UserRepository {
     return rows as User[];
   }
 
+  async findByEmail(email: string): Promise<User | null> {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM user WHERE email = ?",
+      [email],
+    );
+    return rows.length > 0 ? (rows[0] as User) : null;
+  }
+
   async update(user: User, id: number) {
     const [result] = await databaseClient.query<Result>(
       `UPDATE user SET

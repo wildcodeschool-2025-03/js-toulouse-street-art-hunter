@@ -46,8 +46,6 @@ function inscription() {
     resolver: yupResolver(validationSchema),
   });
   const onSubmit = async (data: FormData) => {
-    /*alert(`Bienvenue ${data.pseudo} ! votre email : ${data.email}`);*/
-
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/api/users/inscription`,
@@ -72,7 +70,7 @@ function inscription() {
       if (response.ok) {
         localStorage.setItem("token", result.token);
         alert(`Bienvenu ${data.pseudo} !`);
-        window.location.href = "/dashboard";
+        window.location.href = "/profil";
       } else {
         alert(result.message || "Erreur lors de l'inscription");
       }
@@ -93,6 +91,7 @@ function inscription() {
           type="text"
           id="pseudo"
           autoComplete="userName"
+          placeholder="veuillez entrer votre pseudo"
           required
         />
         {errors.pseudo && <p className="form-error">{errors.pseudo.message}</p>}
@@ -103,6 +102,7 @@ function inscription() {
           type="text"
           id="nom"
           autoComplete="family-name"
+          placeholder="veuillez entrer votre nom"
           required
         />
         {errors.first_name && (
@@ -115,6 +115,7 @@ function inscription() {
           type="text"
           id="prenom"
           autoComplete="given-name"
+          placeholder="veuillez entrer votre prenom"
           required
         />
         {errors.last_name && (
@@ -127,6 +128,7 @@ function inscription() {
           type="email"
           id="email"
           autoComplete="email"
+          placeholder="veuillez entrer votre email"
           required
         />
         {errors.email && <p className="form-error">{errors.email.message}</p>}
@@ -137,6 +139,7 @@ function inscription() {
           type="password"
           id="password"
           autoComplete="new-password"
+          placeholder="veuillez entrer votre mot de passe"
           required
         />
         {errors.password && (
@@ -149,6 +152,7 @@ function inscription() {
           type="password"
           id="confirm_password"
           autoComplete="new-password"
+          placeholder="veuillez entrer a nouveau votre mot de passe"
           required
         />
         {errors.confirm_password && (

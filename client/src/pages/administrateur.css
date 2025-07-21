@@ -1,0 +1,9 @@
+.administrator-container {
+  min-height: 100vh;
+  padding: 100px 20px 80px; /* place pour navbar + footer */
+  background-image: url("");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+}

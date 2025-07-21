@@ -21,6 +21,7 @@ type FormData = yup.InferType<typeof validationSchema>;
 function Connexion() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
     register,
@@ -31,15 +32,50 @@ function Connexion() {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data: FormData) => {
-    setIsLoggedIn(true);
-    setUserEmail(data.email);
-    reset();
+  const onSubmit = async (data: FormData) => {
+    try {
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", //envoyer/recevoir le cookie
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        alert(error.message || "Erreur de connexion");
+        return;
+      }
+
+      await response.json();
+      setIsLoggedIn(true);
+      setUserEmail(data.email);
+      setServerError(null);
+      reset();
+    } catch (error) {
+      setServerError("Erreur de connexion.");
+    }
   };
 
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUserEmail("");
+  const handleLogout = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        return;
+      }
+
+      setIsLoggedIn(false);
+      setUserEmail("");
+      reset();
+    } catch (error) {
+      setServerError("Erreur de déconnexion.");
+    }
   };
 
   return (
@@ -48,11 +84,11 @@ function Connexion() {
         <div className="welcom-message">
           <p>Bienvenue, {userEmail} !</p>
           <button
-            className="btn-deconnection"
+            className="btn-deconnexion"
             type="button"
             onClick={handleLogout}
           >
-            Deconnection
+            Deconnexion
           </button>
         </div>
       ) : (
@@ -71,6 +107,9 @@ function Connexion() {
           {errors.password && (
             <p className="form-error">{errors.password.message}</p>
           )}
+
+          {serverError && <p className="form-error">{serverError}</p>}
+
           <div>
             <button id="btn-connexion" type="submit">
               Connexion

@@ -25,6 +25,12 @@ input {
   font-size: 16px;
 }
 
+input::placeholder {
+  color: #000;
+  opacity: 50%;
+  font-style: italic;
+}
+
 .form-error {
   color: red;
   font-size: 14px;

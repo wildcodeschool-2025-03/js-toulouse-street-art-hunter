@@ -1,0 +1,25 @@
+button.btn-inscription {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  right: 90px;
+  border: none;
+  width: 80px;
+}
+
+@media screen and (min-width: 769px) {
+  button.btn-inscription {
+    font-size: 20px;
+    width: 110px;
+    height: 40px;
+    right: 130px;
+  }
+
+  button.inscription:hover {
+    background-color: rgb(251, 254, 252);
+    cursor: pointer;
+  }
+}

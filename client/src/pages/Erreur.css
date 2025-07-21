@@ -1,0 +1,38 @@
+.erreur-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: #40e0d0;
+  font-family: "RetroGaming", monospace;
+  text-align: center;
+  padding: 20px;
+}
+
+.erreur-page h1 {
+  font-size: 10rem;
+  margin-bottom: 20px;
+}
+
+.erreur-page p {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.erreur-button {
+  font-size: 1.5rem;
+  padding: 15px 30px;
+  background-color: #ff8000;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 0 10px red, 0 0 5px red inset;
+}
+
+.erreur-button:hover {
+  background-color: orange;
+  box-shadow: 0 0 15px red, 0 0 7px red inset;
+}

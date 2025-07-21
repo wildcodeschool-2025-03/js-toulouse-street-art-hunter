@@ -1,0 +1,86 @@
+.capture-page {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url("../images/1febdd3f-7c7e-487f-9b89-721115ed8eb5.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px 120px;
+}
+
+.capture-page h1 {
+  font-family: "RetroGaming", monospace;
+  color: #40e0d0;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.capture-page .video-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+.capture-page video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.capture-page .capture-button {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border: none;
+  background-color: #ff8000;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.capture-page .capture-button:hover {
+  background-color: orange;
+  box-shadow: 0 0 15px red, 0 0 5px red inset;
+}
+
+.capture-page .captured-image {
+  margin-top: 20px;
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 768px) {
+  .capture-page h1 {
+    font-size: 2rem;
+  }
+
+  .capture-page .capture-button {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .capture-page h1 {
+    font-size: 3rem;
+  }
+
+  .capture-page .capture-button {
+    width: 80px;
+    height: 80px;
+  }
+}
