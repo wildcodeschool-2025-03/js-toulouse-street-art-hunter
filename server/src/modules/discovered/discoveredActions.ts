@@ -1,43 +1,44 @@
-import path from "node:path";
-import type { Request, Response } from "express";
-import discoveredRepository from "../discovered/discoveredRepository";
+import type { RequestHandler } from "express";
+import discoveredRepository from "./discorveredRepository";
 
-export const add = async (req: Request, res: Response): Promise<void> => {
+const repository = new discoveredRepository();
+
+const browse: RequestHandler = async (req, res, next) => {
   try {
-    const { userId, artworkId } = req.body;
-
-    if (!req.file) {
-      res.status(400).json({ error: "Aucune image n'a été téléchargée." });
-      return;
-    }
-
-    // Construire le chemin relatif vers la photo uploadée
-    const imagePath = path.join("uploads", req.file.filename);
-
-    // Appeler la méthode create et récupérer le résultat SQL (insertId)
-    const result = await discoveredRepository.create({
-      user_id: Number(userId),
-      artwork_id: Number(artworkId),
-      photo_url: imagePath,
-      discovered_at: new Date(),
-    });
-
-    // Construire un objet complet à renvoyer
-    const newDiscoveredEntry = {
-      id: result.insertId,
-      user_id: Number(userId),
-      artwork_id: Number(artworkId),
-      photo_url: imagePath,
-      discovered_at: new Date(),
-    };
-
-    res.status(201).json(newDiscoveredEntry);
-  } catch (error) {
-    console.error("Erreur lors de la création de discovered :", error);
-    res.status(500).json({ error: "Erreur serveur lors de la création." });
+    const discovered = await repository.readAll();
+    res.json(discovered);
+  } catch (err) {
+    next(err);
   }
 };
 
-export default {
-  add,
+const read: RequestHandler = async (req, res, next) => {
+  try {
+    const discoveredId = Number(req.params.id);
+    const discovered = await repository.read(discoveredId);
+    if (discoveredId == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(discovered);
+    }
+  } catch (err) {
+    next(err);
+  }
 };
+
+const add: RequestHandler = async (req, res, next) => {
+  try {
+    const newdiscovered = {
+      user_Id: req.body.user_Id,
+      artwork_Id: req.body.artwork_Id,
+      discovered_at: req.body.discovered_at,
+    };
+
+    const insertId = await repository.create(newdiscovered);
+    res.status(201).json({ insertId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { browse, read, add };

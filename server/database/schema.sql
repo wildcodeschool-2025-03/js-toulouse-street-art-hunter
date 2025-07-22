@@ -38,20 +38,15 @@ CREATE TABLE artwork (
     FOREIGN KEY (artist_id) REFERENCES artist (id)
 );
 
-
-
--- Table: discovered_artworks
-
+-- Table: discovered_artwork
 CREATE TABLE discovered_artwork (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  user_id INT NOT NULL,             
-  artwork_id INT NOT NULL, 
-  photo_url VARCHAR(255),          
-  discovered_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-  
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (artwork_id) REFERENCES artwork(id),
-  UNIQUE (user_id, artwork_id)     
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    artwork_id INT NOT NULL,
+    discovered_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    FOREIGN KEY (artwork_id) REFERENCES artwork (id),
+    UNIQUE KEY unique_discovery (user_id, artwork_id)
 );
 
 -- Table: score
